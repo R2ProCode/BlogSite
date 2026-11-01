@@ -92,7 +92,7 @@ namespace HW_260318_BlogSite.Models
             return comments;
         }
 
-        public int AddBlogPost(string title, string text, DateTime dateSubmitted)
+        public int AddBlogPost(string title, string text)
         {
             using var connection = new SqlConnection(_connectionString);
             using var command = connection.CreateCommand();
@@ -101,13 +101,13 @@ namespace HW_260318_BlogSite.Models
                                     SELECT SCOPE_IDENTITY()";
             command.Parameters.AddWithValue("@title", title);
             command.Parameters.AddWithValue("@text", text);
-            command.Parameters.AddWithValue("@datesubmitted", dateSubmitted);
+            command.Parameters.AddWithValue("@datesubmitted", DateTime.Now);
 
             connection.Open();
             return (int)(decimal)command.ExecuteScalar();
         }
 
-        public void AddCommentForBlogPost(int id, string text, string commenterName, DateTime dateSubmitted)
+        public void AddCommentForBlogPost(int id, string text, string commenterName)
         {
             using var connection = new SqlConnection(_connectionString);
             using var command = connection.CreateCommand();
@@ -115,7 +115,7 @@ namespace HW_260318_BlogSite.Models
                                     VALUES (@text, @commenterName, @datesubmitted, @id)";
             command.Parameters.AddWithValue("@text", text);
             command.Parameters.AddWithValue("@commenterName", commenterName);
-            command.Parameters.AddWithValue("@datesubmitted", dateSubmitted);
+            command.Parameters.AddWithValue("@datesubmitted", DateTime.Now);
             command.Parameters.AddWithValue("@id", id);
 
             connection.Open();

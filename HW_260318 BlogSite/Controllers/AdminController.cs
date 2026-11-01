@@ -14,10 +14,10 @@ namespace HW_260318_BlogSite.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBlogPost(string title, string text, DateTime dateSubmitted)
+        public IActionResult AddBlogPost(string title, string text)
         {
             BlogPostsDbManager manager = new BlogPostsDbManager(_connectionString);
-            int blogId = manager.AddBlogPost(title, text,dateSubmitted);
+            int blogId = manager.AddBlogPost(title, text);
             return Redirect($"/home/viewblog?id={blogId}");
         }
     }

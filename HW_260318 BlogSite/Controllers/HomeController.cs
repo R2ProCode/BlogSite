@@ -57,8 +57,7 @@ namespace HW_260318_BlogSite.Controllers
         public IActionResult AddCommentToBlogPost(int id, string text, string commenterName)
         {
             var manager = new BlogPostsDbManager(_connectionString);
-            DateTime dateSubmitted = DateTime.Now;
-            manager.AddCommentForBlogPost(id, text, commenterName, dateSubmitted);
+            manager.AddCommentForBlogPost(id, text, commenterName);
             Response.Cookies.Append("commenterName", commenterName);
             return Redirect($"/home/viewblog?id={id}");
         }
