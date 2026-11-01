@@ -27,10 +27,8 @@ namespace HW_260318_BlogSite.Controllers
             var manager = new BlogPostsDbManager(_connectionString);
             if (id == 0)
             {
-                id = manager.GetMostRecentId();
-                //return Redirect($"/home/viewblog?id={id}");
-            }
-            ;
+                id = manager.GetMostRecentId();                
+            };
 
             IndividualBlogViewModel viewModel = new IndividualBlogViewModel
             {

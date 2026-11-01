@@ -17,8 +17,8 @@ namespace HW_260318_BlogSite.Controllers
         public IActionResult AddBlogPost(string title, string text)
         {
             BlogPostsDbManager manager = new BlogPostsDbManager(_connectionString);
-            int blogId = manager.AddBlogPost(title, text);
-            return Redirect($"/home/viewblog?id={blogId}");
+            int id = manager.AddBlogPost(title, text);
+            return Redirect($"/home/viewblog?id={id}");
         }
     }
 }

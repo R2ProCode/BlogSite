@@ -75,10 +75,6 @@ namespace HW_260318_BlogSite.Models
             connection.Open();
             var reader = command.ExecuteReader();
 
-            //if (!reader.Read())
-            //{
-            //    return null;
-            //}
             List<Comment> comments = new List<Comment>();
             while (reader.Read())
             {
@@ -97,7 +93,7 @@ namespace HW_260318_BlogSite.Models
             using var connection = new SqlConnection(_connectionString);
             using var command = connection.CreateCommand();
             command.CommandText = @"INSERT INTO BlogPosts (Title, Text, DateSubmitted)
-                                    VALUES (@title, @text, @datesubmitted);
+                                    VALUES (@title, @text, @datesubmitted)
                                     SELECT SCOPE_IDENTITY()";
             command.Parameters.AddWithValue("@title", title);
             command.Parameters.AddWithValue("@text", text);
