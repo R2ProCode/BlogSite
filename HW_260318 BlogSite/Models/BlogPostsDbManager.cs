@@ -92,7 +92,7 @@ namespace HW_260318_BlogSite.Models
             return comments;
         }
 
-        public int AddBlogPost(string title, string text)
+        public int AddBlogPost(string title, string text, DateTime dateSubmitted)
         {
             using var connection = new SqlConnection(_connectionString);
             using var command = connection.CreateCommand();
@@ -101,21 +101,21 @@ namespace HW_260318_BlogSite.Models
                                     SELECT SCOPE_IDENTITY()";
             command.Parameters.AddWithValue("@title", title);
             command.Parameters.AddWithValue("@text", text);
-            command.Parameters.AddWithValue("@datesubmitted", DateTime.Now);
+            command.Parameters.AddWithValue("@datesubmitted", dateSubmitted);
 
             connection.Open();
             return (int)(decimal)command.ExecuteScalar();
         }
 
-        public void AddCommentForBlogPost(int id, string text, string commenterName)
+        public void AddCommentForBlogPost(int id, string text, string commenterName, DateTime dateSubmitted)
         {
             using var connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var command = connection.CreateCommand();
             command.CommandText = @"INSERT INTO Comments (Text, CommenterName, DateSubmitted, BlogPostId)
                                     VALUES (@text, @commenterName, @datesubmitted, @id)";
             command.Parameters.AddWithValue("@text", text);
             command.Parameters.AddWithValue("@commenterName", commenterName);
-            command.Parameters.AddWithValue("@datesubmitted", DateTime.Now);
+            command.Parameters.AddWithValue("@datesubmitted", dateSubmitted);
             command.Parameters.AddWithValue("@id", id);
 
             connection.Open();
@@ -125,7 +125,7 @@ namespace HW_260318_BlogSite.Models
         public int GetMostRecentId()
         {
             using var connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var command = connection.CreateCommand();
             command.CommandText = @"SELECT TOP 1 Id FROM BlogPosts
                                     ORDER BY DateSubmitted DESC";
             connection.Open();
