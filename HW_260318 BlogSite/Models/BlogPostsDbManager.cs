@@ -14,8 +14,8 @@ namespace HW_260318_BlogSite.Models
 
         public List<BlogPost> GetNextBlogPosts(int page, int takeAmount)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var connection = new SqlConnection(_connectionString);
+            using var command = connection.CreateCommand();
             command.CommandText = @"SELECT * FROM BlogPosts
                                     ORDER BY DateSubmitted DESC
                                     OFFSET @skipamount ROWS
@@ -41,8 +41,8 @@ namespace HW_260318_BlogSite.Models
 
         public BlogPost GetBlogPostById(int id)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var connection = new SqlConnection(_connectionString);
+            using var command = connection.CreateCommand();
             command.CommandText = @"SELECT * FROM BlogPosts                                   
                                     WHERE Id = @id";
             command.Parameters.AddWithValue("@id", id);
@@ -65,8 +65,8 @@ namespace HW_260318_BlogSite.Models
 
         public List<Comment> GetCommentsForBlogPost(int id)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var connection = new SqlConnection(_connectionString);
+            using var command = connection.CreateCommand();
             command.CommandText = @"SELECT c.CommenterName, c.Text, c.DateSubmitted FROM Comments c
                                     JOIN BlogPosts bp
                                     ON c.BlogPostId = bp.Id
@@ -94,8 +94,8 @@ namespace HW_260318_BlogSite.Models
 
         public int AddBlogPost(string title, string text)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var connection = new SqlConnection(_connectionString);
+            using var command = connection.CreateCommand();
             command.CommandText = @"INSERT INTO BlogPosts (Title, Text, DateSubmitted)
                                     VALUES (@title, @text, @datesubmitted);
                                     SELECT SCOPE_IDENTITY()";
@@ -109,7 +109,7 @@ namespace HW_260318_BlogSite.Models
 
         public void AddCommentForBlogPost(int id, string text, string commenterName)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using var connection = new SqlConnection(_connectionString);
             using SqlCommand command = connection.CreateCommand();
             command.CommandText = @"INSERT INTO Comments (Text, CommenterName, DateSubmitted, BlogPostId)
                                     VALUES (@text, @commenterName, @datesubmitted, @id)";
@@ -124,7 +124,7 @@ namespace HW_260318_BlogSite.Models
 
         public int GetMostRecentId()
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using var connection = new SqlConnection(_connectionString);
             using SqlCommand command = connection.CreateCommand();
             command.CommandText = @"SELECT TOP 1 Id FROM BlogPosts
                                     ORDER BY DateSubmitted DESC";
@@ -134,8 +134,8 @@ namespace HW_260318_BlogSite.Models
 
         public int GetBlogPostCount()
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
-            using SqlCommand command = connection.CreateCommand();
+            using var connection = new SqlConnection(_connectionString);
+            using var command = connection.CreateCommand();
             command.CommandText = @"SELECT COUNT(*) FROM BlogPosts";
             connection.Open();
             return (int)command.ExecuteScalar();
