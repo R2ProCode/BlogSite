@@ -33,15 +33,10 @@ namespace HW_260318_BlogSite.Controllers
             IndividualBlogViewModel viewModel = new IndividualBlogViewModel
             {
                 BlogPost = manager.GetBlogPostById(id),
-                Comments = manager.GetCommentsForBlogPost(id)
+                Comments = manager.GetCommentsForBlogPost(id),
+                CommenterName = Request.Cookies["commenterName"]
 
             };
-
-            var cookie = Request.Cookies["commenterName"];
-            if (cookie != null)
-            {
-                viewModel.CommenterName = cookie;
-            }
 
             if (viewModel.BlogPost == null)
             {

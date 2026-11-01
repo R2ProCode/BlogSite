@@ -67,10 +67,8 @@ namespace HW_260318_BlogSite.Models
         {
             using var connection = new SqlConnection(_connectionString);
             using var command = connection.CreateCommand();
-            command.CommandText = @"SELECT c.CommenterName, c.Text, c.DateSubmitted FROM Comments c
-                                    JOIN BlogPosts bp
-                                    ON c.BlogPostId = bp.Id
-                                    WHERE bp.Id = @id";
+            command.CommandText = @"SELECT * FROM Comments
+                                    WHERE BlogPostId = @id";
             command.Parameters.AddWithValue("@id", id);
             connection.Open();
             var reader = command.ExecuteReader();
