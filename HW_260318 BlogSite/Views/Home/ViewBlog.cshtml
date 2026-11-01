@@ -1,0 +1,127 @@
+﻿@model IndividualBlogViewModel
+@section CommentForm {
+	<script src="~/js/comment-form-check.js"></script>
+}
+<div class="container my-5">
+
+	<div class="blog-post">
+
+		<h2 class="blog-title">
+			@Model.BlogPost.Title
+		</h2>
+
+		<div class="blog-meta">
+			<div>
+				<strong>By:</strong> Rivghah Rashti
+			</div>
+
+			<div>
+				<strong>Posted on:</strong>
+				@Model.BlogPost.DateSubmitted.ToLongDateString()
+			</div>
+		</div>
+
+		<div class="blog-content">
+			@foreach (var paragraph in @Model.BlogPost.Text.Split("\n"))
+			{
+				@(paragraph)
+				<br />
+			}
+		</div>
+
+		<hr class="comments-divider" />
+
+		<div class="comment-section-header">
+			<h3 class="mb-0">
+				<i class="bi bi-chat-left-text-fill me-2"></i>
+				Leave a Comment
+			</h3>
+		</div>
+
+		<div class="comment-form-card">
+
+			<form method="post" action="/home/AddCommentToBlogPost?id=@Model.BlogPost.Id">
+
+				<div class="mb-3">
+					<input type="text"
+						   class="form-control comment-input"
+						   id="commenterName"
+						   name="commenterName"
+						   value="@Model.CommenterName"
+						   placeholder="Enter your name" />
+				</div>
+
+				<div class="mb-3">
+					<textarea class="form-control comment-input"
+							  id="text"
+							  name="text"
+							  rows="4"
+							  placeholder="Type your comment here, but remember to be nice..."></textarea>
+				</div>
+
+				<button type="submit"
+						class="comment-btn"
+						id="btn-submit"
+						disabled>
+					<i class="bi bi-send-fill me-2"></i>
+					Submit Comment
+				</button>
+
+			</form>
+
+		</div>
+
+	
+	@if (Model.Comments != null)
+	{
+		<hr class="comments-divider" />
+
+		<div class="comment-section-header">
+			<h3 class="mb-0">
+				<i class="bi bi-chat-dots-fill me-2"></i>
+				Comments (@Model.Comments.Count)
+			</h3>
+		</div>
+
+		@foreach (var comment in Model.Comments)
+		{
+			<div class="comment-card">
+
+				<div class="comment-header">
+
+					<div class="comment-author">
+						@comment.CommenterName
+					</div>
+
+					<div class="comment-date">
+						@comment.DateSubmitted.ToLongDateString()
+					</div>
+
+				</div>
+
+				<div class="comment-text">
+					@comment.Text
+				</div>
+
+			</div>
+		}
+	}
+	else
+	{
+		<hr class="comments-divider" />
+
+		<div class="comment-section-header">
+			<h3 class="mb-0">
+				<i class="bi bi-chat-dots-fill me-2"></i>
+				Comments
+			</h3>
+		</div>
+
+		<div class="comment-card">
+			<div class="comment-text">
+				No comments yet. Be the first to comment!
+			</div>
+		</div>
+	}
+	</div>
+</div>

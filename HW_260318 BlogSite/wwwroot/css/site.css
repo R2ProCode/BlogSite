@@ -1,0 +1,316 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    background: #fff8fb;
+    margin-bottom: 60px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* BLOG POSTS */
+
+.blog-post {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #fff5f8, #ffeef4);
+    border: 1px solid #ffd6e3;
+    border-radius: 24px;
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.08);
+    transition: all 0.3s ease;
+}
+
+    .blog-post:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(233, 30, 99, 0.15);
+    }
+
+.blog-title {
+    color: #c2185b;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: .5rem;
+    border-left: 5px solid #ff80ab;
+    padding-left: 15px;
+    display: inline-block;
+}
+
+    .blog-title a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+        .blog-title a:hover {
+            color: #c2185b;
+        }
+
+.blog-meta {
+    color: #ad5c7a;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #ffd6e3;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+    .blog-meta strong {
+        color: #d81b60;
+    }
+
+.blog-content {
+    color: #5f4650;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.9;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* READ MORE BUTTON */
+
+.read-more-btn {
+    background: #e91e63;
+    color: white;
+    border-radius: 14px;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: .3s;
+}
+
+    .read-more-btn:hover {
+        background: #d81b60;
+        color: white;
+        transform: scale(1.03);
+    }
+
+/* COMMENTS */
+
+.comments-divider {
+    border: 0;
+    border-top: 2px solid #ffd6e3;
+    margin: 3rem 0 1.5rem;
+}
+
+.comment-section-header {
+    background: linear-gradient(135deg, #fff0f6, #ffe4ee);
+    border: 1px solid #ffd6e3;
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 6px 18px rgba(233, 30, 99, 0.08);
+}
+
+    .comment-section-header h3 {
+        margin: 0;
+        color: #c2185b;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+.comment-form-card {
+    background: #fff;
+    border: 1px solid #ffd6e3;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 24px rgba(233, 30, 99, 0.08);
+}
+
+.comment-input {
+    background: #fff7fa;
+    border: 1px solid #ffc1d5;
+    border-radius: 14px;
+    padding: .85rem 1rem;
+    color: #5f4650;
+}
+
+    .comment-input:focus {
+        background: white;
+        border-color: #e91e63;
+        color: #5f4650;
+        box-shadow: 0 0 0 .2rem rgba(233, 30, 99, 0.15);
+    }
+
+    .comment-input::placeholder {
+        color: #ad5c7a;
+    }
+
+/* COMMENT BUTTON */
+
+.comment-btn {
+    background: linear-gradient(135deg, #ec4899, #d946ef);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: .85rem 1.5rem;
+    font-weight: 600;
+    transition: all .3s ease;
+}
+
+    .comment-btn:not(:disabled):hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(233, 30, 99, 0.25);
+    }
+
+    .comment-btn:disabled {
+        background: linear-gradient(135deg, #ec4899, #d946ef);
+        color: white;
+        opacity: .55;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+/* COMMENTS LIST */
+
+.comments-heading {
+    color: #c2185b;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.comment-card {
+    background: #fff;
+    border: 1px solid #ffd6e3;
+    border-radius: 18px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.08);
+    transition: all .3s ease;
+}
+
+    .comment-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(233, 30, 99, 0.12);
+    }
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .75rem;
+}
+
+.comment-author {
+    font-weight: 700;
+    color: #c2185b;
+}
+
+.comment-date {
+    color: #888;
+    font-size: .9rem;
+}
+
+.comment-text {
+    color: #555;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+/* PAGINATION BUTTONS */
+
+.pagination-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.view-all-btn {
+    background: linear-gradient(135deg, #ec4899, #d946ef);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: all .3s ease;
+    display: inline-block;
+}
+
+    .view-all-btn:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(233, 30, 99, 0.25);
+    }
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    .blog-post {
+        padding: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .blog-title {
+        font-size: 1.5rem;
+        padding-left: 12px;
+    }
+
+    .blog-meta {
+        font-size: .9rem;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .comment-section-header,
+    .comment-form-card {
+        padding: 1rem;
+    }
+
+    .comment-btn,
+    .view-all-btn {
+        width: 100%;
+    }
+
+    .pagination-buttons {
+        flex-direction: column;
+    }
+
+    .view-all-btn {
+        text-align: center;
+    }
+
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .25rem;
+    }
+
+    .comment-card {
+        padding: 1rem;
+    }
+}

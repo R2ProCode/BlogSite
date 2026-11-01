@@ -1,0 +1,41 @@
+﻿@section BlogForm {
+    <script src="~/js/blog-form-check.js"></script>
+}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-10 col-lg-8">
+
+            <div class="text-center mb-4">
+                <h1 class="blog-title">Create a New Blog Post</h1>
+                <p class="text-muted">
+                    Share your thoughts, ideas, and experiences with your readers.
+                </p>
+            </div>
+
+            <form method="post" action="/admin/addblogpost">
+
+                <div class="mb-3">
+                    <input type="text"
+                           class="form-control comment-input"
+                           id="title"
+                           name="title"
+                           placeholder="Enter blog post title" />
+                </div>
+
+                <div class="mb-3">
+                    <textarea class="form-control comment-input"
+                              id="text"
+                              name="text"
+                              rows="8"
+                              placeholder="What's on your mind?"></textarea>
+                </div>
+
+                <button disabled type="submit" class="comment-btn" id="btn-submit">
+                    Submit Blog Post
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

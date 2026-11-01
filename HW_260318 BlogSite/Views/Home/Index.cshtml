@@ -1,0 +1,57 @@
+﻿@model BlogPostsViewModel
+
+<div class="container my-5">
+
+	@foreach (var bp in Model.BlogPosts)
+	{
+		<div class="blog-post">
+
+			<h2 class="blog-title">
+				<a href="/home/viewblog?id=@bp.Id">@bp.Title</a>
+			</h2>
+
+			<div class="blog-meta">
+				<div>
+					<strong>By:</strong> Rivghah Rashti
+				</div>
+
+				<div>
+					<strong>Posted on:</strong>
+					@bp.DateSubmitted.ToLongDateString()
+				</div>
+			</div>
+
+			<div class="blog-content">
+				@foreach (var paragraph in bp.Text.Length > 200 ? bp.Text.Substring(0, 200).Split("\n") : bp.Text.Split("\n"))
+				{
+					@(paragraph.Length == 200 ? paragraph + "..." : paragraph)
+					<br />
+				}
+			</div>
+
+			<a href="/home/viewblog?id=@bp.Id" class="read-more-btn">
+				Read More →
+			</a>
+
+		</div>
+	}
+	<div class="pagination-buttons">
+
+		@if (Model.CurrentPage * Model.TakeAmount < Model.TotalPages)
+		{
+			<a href="/home/index?page=@(Model.CurrentPage + 1)"
+			   class="view-all-btn">
+				← Previous Posts
+			</a>
+		}
+
+		@if (Model.CurrentPage > 1)
+		{
+			<a href="/home/index?page=@(Model.CurrentPage - 1)"
+			   class="view-all-btn">
+				Later Posts →
+			</a>
+		}
+
+	</div>
+</div>
